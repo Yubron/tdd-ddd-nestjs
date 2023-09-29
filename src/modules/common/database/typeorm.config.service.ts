@@ -18,7 +18,8 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       synchronize: false,
       namingStrategy: new SnakeNamingStrategy(),
       logging: true,
-      entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+      entities: ['src/**/*.entity{.ts,.js}'],
+      migrations: ['src/db/migrations/*.ts'],
     } as TypeOrmModuleOptions;
   }
 }
