@@ -7,4 +7,9 @@ export class UserRepository extends Repository<User> {
   constructor(private dataSource: DataSource) {
     super(User, dataSource.createEntityManager());
   }
+
+  public async findByEmail(email: string): Promise<User> {
+    const user = await this.findOne({ where: { email } });
+    return user;
+  }
 }

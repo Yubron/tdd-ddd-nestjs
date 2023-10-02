@@ -13,3 +13,11 @@ export class SignUpReqDto {
   @IsString()
   appVersion: string;
 }
+
+export class SignInReqDto {
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  password: string;
+}
