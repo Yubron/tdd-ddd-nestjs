@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { TypeOrmConfigService } from './modules/common/database/typeorm.config.service';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { TypeOrmConfigService } from './modules/common/database/typeorm.config.s
         return await new DataSource(options).initialize();
       },
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
