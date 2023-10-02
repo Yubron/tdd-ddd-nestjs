@@ -1,6 +1,6 @@
 import { SignUpResDto } from 'src/modules/user/dtos/user.res.dto';
 
-describe('Entity: User', () => {
+describe('DTO: SignUpResDto', () => {
   it('should be defined', () => {
     const testToken = 'testAccessToken';
     const signUpResDto = SignUpResDto.of(testToken);

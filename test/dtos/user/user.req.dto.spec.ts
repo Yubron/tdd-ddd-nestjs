@@ -2,7 +2,7 @@ import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 import { SignUpReqDto } from 'src/modules/user/dtos/user.req.dto';
 
-describe('Entity: User', () => {
+describe('DTO: SignUpReqDto', () => {
   it('should be defined', async () => {
     const signUpReqDto = {
       email: 'test@test.com',

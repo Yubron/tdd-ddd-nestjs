@@ -4,7 +4,7 @@ import { UserRepository } from 'src/modules/user/repositories/user.repository';
 import { UserService } from 'src/modules/user/user.service';
 import { mock, instance } from 'ts-mockito';
 
-describe('UserService', () => {
+describe('Service: UserService', () => {
   const mockedUserRepository: UserRepository = mock(UserRepository);
   const userService = new UserService(instance(mockedUserRepository));
 
