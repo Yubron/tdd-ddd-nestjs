@@ -1,5 +1,6 @@
 import { Entity, Column } from 'typeorm';
 import { CommonEntity } from './common/common.entity';
+import * as bcrypt from 'bcrypt';
 
 @Entity({ name: 'users' })
 export class User extends CommonEntity {
@@ -31,7 +32,7 @@ export class User extends CommonEntity {
     this.appVersion = appVersion;
   }
 
-  public static of({
+  public static async of({
     email,
     nickname,
     password,
@@ -42,6 +43,16 @@ export class User extends CommonEntity {
     password: string;
     appVersion: string;
   }) {
-    return new User(email, nickname, password, appVersion);
+    const hashedPassword = await this.hashPassword(password);
+    return new User(email, nickname, hashedPassword, appVersion);
+  }
+
+  private static async hashPassword(password: string) {
+    const saltOrRounds = await bcrypt.genSalt();
+    return await bcrypt.hash(password, saltOrRounds);
+  }
+
+  public async comparePassword(password: string) {
+    return await bcrypt.compare(password, this.password);
   }
 }

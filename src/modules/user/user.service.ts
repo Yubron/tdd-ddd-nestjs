@@ -9,8 +9,10 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   public async signUp(signUpReqDto: SignUpReqDto): Promise<SignUpResDto> {
-    const user = User.of(signUpReqDto);
+    const user = await User.of(signUpReqDto);
     await this.userRepository.save(user);
+
+    // TODO: access token 발급
     const result = SignUpResDto.of('testAccessToken');
 
     return result;
