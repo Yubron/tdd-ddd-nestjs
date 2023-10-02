@@ -1,3 +1,4 @@
+import { JwtService } from '@nestjs/jwt';
 import { SignUpReqDto } from 'src/modules/user/dtos/user.req.dto';
 import { SignUpResDto } from 'src/modules/user/dtos/user.res.dto';
 import { UserRepository } from 'src/modules/user/repositories/user.repository';
@@ -6,7 +7,11 @@ import { mock, instance } from 'ts-mockito';
 
 describe('Service: UserService', () => {
   const mockedUserRepository: UserRepository = mock(UserRepository);
-  const userService = new UserService(instance(mockedUserRepository));
+  const jwtService = new JwtService({ secret: 'testCodeSecret' });
+  const userService = new UserService(
+    instance(mockedUserRepository),
+    jwtService,
+  );
 
   it('defined defined userService', () => {
     expect(userService).toBeDefined();
@@ -24,5 +29,6 @@ describe('Service: UserService', () => {
 
     expect(result).toBeDefined();
     expect(result).toBeInstanceOf(SignUpResDto);
+    expect(result.accessToken).not.toBeNull();
   });
 });
