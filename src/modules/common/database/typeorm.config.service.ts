@@ -17,7 +17,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       database: this.configService.get('DB_NAME'),
       synchronize: false,
       namingStrategy: new SnakeNamingStrategy(),
-      logging: true,
+      logging: false,
       entities: ['dist/modules/entities/*.entity.js'],
       migrations: ['src/db/migrations/*.ts'],
     } as TypeOrmModuleOptions;
