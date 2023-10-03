@@ -20,7 +20,17 @@ export class UserService {
     const user = await User.of(signUpReqDto);
     await this.userRepository.save(user);
 
-    const payload = { id: user.id };
+    const payload = {
+      user: {
+        id: user.id,
+        email: user.email,
+        nickname: user.nickname,
+        appVersion: user.appVersion,
+        lastLogin: user.lastLogin,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+    };
     const accessToken = await this.jwtService.signAsync(payload);
     const result = SignUpResDto.of(accessToken);
 
@@ -40,12 +50,22 @@ export class UserService {
       throw new UnauthorizedException('password not match');
     }
 
-    const payload = { id: user.id };
-    const accessToken = await this.jwtService.signAsync(payload);
-    const result = SignInResDto.of(accessToken);
-
     user.updateLastLogin();
     await this.userRepository.save(user);
+
+    const payload = {
+      user: {
+        id: user.id,
+        email: user.email,
+        nickname: user.nickname,
+        appVersion: user.appVersion,
+        lastLogin: user.lastLogin,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+    };
+    const accessToken = await this.jwtService.signAsync(payload);
+    const result = SignInResDto.of(accessToken);
 
     return result;
   }
