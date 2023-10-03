@@ -14,7 +14,7 @@ export class User extends CommonEntity {
   public readonly password!: string;
 
   @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
-  public readonly lastLogin!: Date;
+  public lastLogin!: Date;
 
   @Column('varchar')
   public readonly appVersion!: string;
@@ -54,5 +54,9 @@ export class User extends CommonEntity {
 
   public async comparePassword(password: string) {
     return await bcrypt.compare(password, this.password);
+  }
+
+  public updateLastLogin() {
+    this.lastLogin = new Date();
   }
 }

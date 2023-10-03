@@ -52,6 +52,7 @@ describe('Service: UserService', () => {
         comparePassword: async () => true,
         createdAt: new Date(),
         updatedAt: new Date(),
+        updateLastLogin: jest.fn(),
       });
       const result = await userService.signIn(signInDto);
 
@@ -89,6 +90,7 @@ describe('Service: UserService', () => {
         comparePassword: async () => false,
         createdAt: new Date(),
         updatedAt: new Date(),
+        updateLastLogin: jest.fn(),
       });
 
       await expect(async () => {

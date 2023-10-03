@@ -44,6 +44,9 @@ export class UserService {
     const accessToken = await this.jwtService.signAsync(payload);
     const result = SignInResDto.of(accessToken);
 
+    user.updateLastLogin();
+    await this.userRepository.save(user);
+
     return result;
   }
 }
