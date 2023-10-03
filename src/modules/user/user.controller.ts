@@ -11,4 +11,9 @@ export class UserController {
   public signUp(@Body() signUpReqDto: SignUpReqDto): Promise<SignUpResDto> {
     return this.userService.signUp(signUpReqDto);
   }
+
+  @Post('sign-in')
+  public signIn(@Body() signInReqDto: SignUpReqDto): Promise<SignUpResDto> {
+    return this.userService.signIn(signInReqDto);
+  }
 }
