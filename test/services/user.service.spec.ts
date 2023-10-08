@@ -4,7 +4,7 @@ import { SignInReqDto, SignUpReqDto } from 'src/modules/user/dtos/user.req.dto';
 import { SignInResDto, SignUpResDto } from 'src/modules/user/dtos/user.res.dto';
 import { UserRepository } from 'src/modules/user/repositories/user.repository';
 import { UserService } from 'src/modules/user/user.service';
-import { mock, instance, when } from 'ts-mockito';
+import { instance, mock, when } from 'ts-mockito';
 
 describe('Service: UserService', () => {
   const mockedUserRepository: UserRepository = mock(UserRepository);
@@ -53,6 +53,8 @@ describe('Service: UserService', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         updateLastLogin: jest.fn(),
+        deletedAt: null,
+        getUserInfo: jest.fn(),
       });
       const result = await userService.signIn(signInDto);
 
@@ -91,6 +93,8 @@ describe('Service: UserService', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         updateLastLogin: jest.fn(),
+        deletedAt: null,
+        getUserInfo: jest.fn(),
       });
 
       await expect(async () => {
