@@ -1,6 +1,7 @@
-import { Entity, Column } from 'typeorm';
-import { CommonEntity } from './common/common.entity';
 import * as bcrypt from 'bcrypt';
+import { Column, Entity } from 'typeorm';
+import { UserInfo } from '../user/vos/UserInfo.vo';
+import { CommonEntity } from './common/common.entity';
 
 @Entity({ name: 'users' })
 export class User extends CommonEntity {
@@ -58,5 +59,17 @@ export class User extends CommonEntity {
 
   public updateLastLogin() {
     this.lastLogin = new Date();
+  }
+
+  public getUserInfo(): UserInfo {
+    return {
+      id: this.id,
+      email: this.email,
+      nickname: this.nickname,
+      lastLogin: this.lastLogin,
+      appVersion: this.appVersion,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }

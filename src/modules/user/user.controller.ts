@@ -23,6 +23,6 @@ export class UserController {
   @Get('profile')
   @UseGuards(JwtAuthGuard)
   public getProfile(@UserDecorator() user: User) {
-    return user;
+    return user.getUserInfo();
   }
 }
