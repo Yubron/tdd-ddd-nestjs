@@ -3,7 +3,7 @@ import { UserInfo } from '../user/vos/UserInfo.vo';
 import { CommonEntity } from './common/common.entity';
 import { User } from './user.entity';
 
-@Entity({ name: 'users' })
+@Entity({ name: 'boards' })
 export class Board extends CommonEntity {
   @Column('varchar')
   public readonly title!: string;

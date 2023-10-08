@@ -1,5 +1,6 @@
 import {
   CreateDateColumn,
+  DeleteDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -17,4 +18,9 @@ export abstract class CommonEntity {
     type: 'timestamp',
   })
   public readonly updatedAt: Date;
+
+  @DeleteDateColumn({
+    type: 'timestamp',
+  })
+  public readonly deletedAt: Date;
 }
