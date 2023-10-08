@@ -12,7 +12,7 @@ export class Board extends CommonEntity {
   public readonly content!: string;
 
   @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn({ name: 'writer_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   public readonly writer!: UserInfo;
 
   private constructor(title: string, content: string, writer: UserInfo) {
